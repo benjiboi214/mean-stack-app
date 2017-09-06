@@ -1,10 +1,13 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var routes = require('./api/routes');
 
 app.set('port', 3000);
+
+app.use('/favicon.ico', function() {return});
 
 app.use(function(req, res, next) {
   console.log(req.method, req.url);
@@ -12,6 +15,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({ extended : false }));
 
 app.use('/api', routes);
 

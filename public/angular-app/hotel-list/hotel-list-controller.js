@@ -6,6 +6,6 @@ function HotelsController(hotelDataFactory) {
   vm.title = 'Mean Hotel App';
   hotelDataFactory.hotelList()
     .then(function(response) {
-      vm.hotels = response;
+      vm.hotels = response.data;
     });
 }

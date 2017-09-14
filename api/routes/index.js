@@ -9,26 +9,26 @@ var ctrlUsers = require('../controllers/users.controllers.js');
 router
   .route('/hotels')
   .get(ctrlHotels.hotelsGetAll)
-  .post(ctrlHotels.hotelsAddOne);
+  .post(ctrlUsers.authenticate, ctrlHotels.hotelsAddOne);
 
 router
   .route('/hotels/:hotelId')
   .get(ctrlHotels.hotelsGetOne)
-  .put(ctrlHotels.hotelsUpdateOne)
-  .delete(ctrlHotels.hotelsDeleteOne);
+  .put(ctrlUsers.authenticate, ctrlHotels.hotelsUpdateOne)
+  .delete(ctrlUsers.authenticate, ctrlHotels.hotelsDeleteOne);
 
 // Review routes
 router
   .route('/hotels/:hotelId/reviews')
   .get(ctrlReviews.reviewsGetAll)
-  .post(ctrlReviews.reviewsAddOne);
+  .post(ctrlUsers.authenticate, ctrlReviews.reviewsAddOne);
 
 
 router
   .route('/hotels/:hotelId/reviews/:reviewId')
   .get(ctrlReviews.reviewsGetOne)
-  .put(ctrlReviews.reviewsUpdateOne)
-  .delete(ctrlReviews.reviewsDeleteOne);
+  .put(ctrlUsers.authenticate, ctrlReviews.reviewsUpdateOne)
+  .delete(ctrlUsers.authenticate, ctrlReviews.reviewsDeleteOne);
 
 // Authentication
 router

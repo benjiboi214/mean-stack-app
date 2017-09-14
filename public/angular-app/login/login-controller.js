@@ -6,6 +6,10 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
 
   vm.isLoggedIn = function() {
     if (AuthFactory.isLoggedIn) {
+      if ($window.sessionStorage.token) {
+        var decodedToken = jwtHelper.decodeToken($window.sessionStorage.token);
+        vm.loggedinUser = decodedToken.username;
+      }
       return true;
     } else {
       return false;
